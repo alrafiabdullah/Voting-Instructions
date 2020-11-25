@@ -6,7 +6,9 @@ import Card from "./Card/Card";
 import "react-notifications-component/dist/theme.css";
 
 function Home() {
+  console.log("Home");
   function scrollNotification() {
+    console.log("Notification");
     $(window).on("load", () => {
       store.addNotification({
         title: "Notification from ACM Vote!",
