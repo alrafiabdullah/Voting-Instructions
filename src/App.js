@@ -6,6 +6,8 @@ import Home from "./components/home/Home";
 import Title from "./components/Title/Title";
 
 import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.min.js";
+import "popper.js";
 
 function App() {
   const [darkMode, setDarkMode] = useState(getInitialMode());
