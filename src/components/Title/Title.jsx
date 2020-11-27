@@ -32,7 +32,7 @@ function Trail({ open, children, ...props }) {
   );
 }
 
-function Try() {
+function Title() {
   const [open, set] = useState(true);
   return (
     <Trail className="try" open={open} onClick={() => set((state) => !state)}>
@@ -53,4 +53,4 @@ function Try() {
   );
 }
 
-export default Try;
+export default Title;

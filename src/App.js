@@ -1,34 +1,52 @@
-import "./App.css";
-import React, { useState, useEffect } from "react";
+import React, { Component } from "react";
 import { WiDaySunny, WiMoonWaxingCrescent5 } from "react-icons/wi";
 
 import Home from "./components/home/Home";
 import Title from "./components/Title/Title";
+import Rules from "./components/pera/Rules";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
 import "popper.js";
+import "./App.css";
 
-function App() {
-  const [darkMode, setDarkMode] = useState(getInitialMode());
-  const [isNotMobile, setIsNotMobile] = useState(false);
+export class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      date: new Date(),
+      darkMode: this.getInitialMode(),
+      isNotMobile: false,
+    };
+    this.getInitialMode = this.getInitialMode.bind(this);
+    this.getPrefColorScheme = this.getPrefColorScheme.bind(this);
+  }
 
-  useEffect(() => {
-    localStorage.setItem("dark", JSON.stringify(darkMode));
-  }, [darkMode]);
+  componentDidMount() {
+    this.timerID = setInterval(() => this.tick(), 1000);
 
-  useEffect(() => {
+    localStorage.setItem("dark", JSON.stringify(this.state.darkMode));
+
     const width = window.innerWidth;
-    console.log(width);
     if (width > 768) {
-      setIsNotMobile(true);
+      this.setState({
+        isNotMobile: true,
+      });
     }
-  }, [isNotMobile]);
+  }
 
-  function getInitialMode() {
+  componentDidUpdate() {
+    localStorage.setItem("dark", JSON.stringify(this.state.darkMode));
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timerID);
+  }
+
+  getInitialMode() {
     const isReturningUser = "dark" in localStorage;
     const savedMode = JSON.parse(localStorage.getItem("dark"));
-    const userPreferDark = getPrefColorScheme();
+    const userPreferDark = this.getPrefColorScheme();
 
     if (isReturningUser) {
       return savedMode;
@@ -39,24 +57,29 @@ function App() {
     }
   }
 
-  function getPrefColorScheme() {
+  getPrefColorScheme() {
     if (!window.matchMedia) return;
-    return window.matchMedia("prefers-color-scheme: dark").matches;
+    return window.matchMedia("prefers-color-scheme: light").matches;
   }
 
-  return (
-    <React.Fragment>
-      <div className={darkMode ? "dark-mode" : "light-mode"}>
-        {isNotMobile && (
+  tick() {
+    this.setState({
+      date: new Date(),
+    });
+  }
+
+  render() {
+    return (
+      <div className={this.state.darkMode ? "dark-mode" : "light-mode"}>
+        {this.state.isNotMobile && (
           <>
             <span
               align="center"
-              onClick={() => setDarkMode((prevMode) => !prevMode)}
+              onClick={() => this.setState({ darkMode: !this.state.darkMode })}
             >
-              {darkMode ? (
+              {this.state.darkMode ? (
                 <>
                   <WiDaySunny size={40} style={{ color: "#f7f7f7" }} />
-                  <span>Light</span>
                 </>
               ) : (
                 <>
@@ -64,18 +87,17 @@ function App() {
                     size={40}
                     style={{ color: "#006790" }}
                   />
-                  <span>Dark</span>
                 </>
               )}
             </span>
             <Title />
           </>
         )}
-
-        <Home />
+        <Home date={this.state.date} />
+        <Rules />
       </div>
-    </React.Fragment>
-  );
+    );
+  }
 }
 
 export default App;

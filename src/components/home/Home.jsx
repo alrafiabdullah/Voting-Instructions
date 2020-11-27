@@ -1,45 +1,47 @@
-import React from "react";
-import $ from "jquery";
+import React, { Component } from "react";
 import ReactNotification, { store } from "react-notifications-component";
-import Card from "./Card/Card";
 
 import "react-notifications-component/dist/theme.css";
+import "./home.css";
 
-function Home() {
-  console.log("Home");
-  function scrollNotification() {
-    console.log("Notification");
-    $(window).on("load", () => {
-      store.addNotification({
-        title: "Notification from ACM Vote!",
-        message:
-          "This website is still in progress.\nThank you for visiting!!! 🥇",
-        type: "info",
-        container: "top-right",
-        insert: "top",
-        animationIn: ["animated", "fadeIn"],
-        animationOut: ["animated", "fadeOut"],
+export class Home extends Component {
+  componentDidMount() {
+    store.addNotification({
+      title: "Notification from ACM Vote!",
+      message:
+        "This website is still in progress.\nThank you for visiting!!! 🥇",
+      type: "info",
+      container: "top-right",
+      insert: "top",
+      animationIn: ["animated", "fadeIn"],
+      animationOut: ["animated", "fadeOut"],
 
-        dismiss: {
-          duration: 5000,
-          onScreen: true,
-          showIcon: true,
-        },
-      });
+      dismiss: {
+        duration: 5000,
+        onScreen: true,
+        showIcon: true,
+      },
     });
   }
 
-  return (
-    <div onLoad={scrollNotification()} className="mt-5">
-      <ReactNotification />
-      <div>
-        <h3 className="container">Voting Rules of the Fall 2020 Election</h3>
-      </div>
-      <div>
-        <Card />
-      </div>
-    </div>
-  );
+  render() {
+    const options = {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    };
+    return (
+      <React.Fragment>
+        <ReactNotification />
+        <div className="home">
+          <h3>Voting Rules of the Fall 2020 Election</h3>
+          <h5>Date: {this.props.date.toLocaleDateString("en-GB", options)}</h5>
+          <h5>Time: {this.props.date.toLocaleTimeString()}</h5>
+        </div>
+      </React.Fragment>
+    );
+  }
 }
 
 export default Home;
