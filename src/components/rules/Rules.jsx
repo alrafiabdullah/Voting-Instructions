@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 
+import Trial from "../trial/Trial";
+
 import "./rules.css";
 
-export class Pera extends Component {
+export class Rules extends Component {
   render() {
     return (
       <div>
@@ -65,9 +67,10 @@ export class Pera extends Component {
             Vote
           </a>
         </div>
+        <Trial />
       </div>
     );
   }
 }
 
-export default Pera;
+export default Rules;

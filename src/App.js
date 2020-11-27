@@ -4,7 +4,7 @@ import { WiDaySunny, WiMoonWaxingCrescent5 } from "react-icons/wi";
 
 import Home from "./components/home/Home";
 import Title from "./components/Title/Title";
-import Rules from "./components/pera/Rules";
+import Rules from "./components/rules/Rules";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
