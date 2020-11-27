@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { WiDaySunny, WiMoonWaxingCrescent5 } from "react-icons/wi";
-// import { FaSun, FaRegMoon } from "react-icons/fa";
 
 import Home from "./components/home/Home";
 import Title from "./components/Title/Title";
