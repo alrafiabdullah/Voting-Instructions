@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { WiDaySunny, WiMoonWaxingCrescent5 } from "react-icons/wi";
+import { FaSun, FaRegMoon } from "react-icons/fa";
 
 import Home from "./components/home/Home";
 import Title from "./components/Title/Title";
@@ -79,14 +80,20 @@ export class App extends Component {
             >
               {this.state.darkMode ? (
                 <>
-                  <WiDaySunny size={40} style={{ color: "#f7f7f7" }} />
+                  <button className="lightButton">
+                    <WiDaySunny size={40} style={{ color: "#f7f7f7" }} />
+                    <span>Light</span>
+                  </button>
                 </>
               ) : (
                 <>
-                  <WiMoonWaxingCrescent5
-                    size={40}
-                    style={{ color: "#006790" }}
-                  />
+                  <button className="darkButton">
+                    <WiMoonWaxingCrescent5
+                      size={40}
+                      style={{ color: "#006790" }}
+                    />
+                    <span style={{ color: "#006790" }}>Dark</span>
+                  </button>
                 </>
               )}
             </span>

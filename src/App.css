@@ -27,3 +27,17 @@
 span:hover {
   cursor: pointer;
 }
+
+.lightButton {
+  border: 3px #f7f7f7 solid;
+  border-radius: 5px;
+  color: #f7f7f7;
+  background-color: #006790;
+}
+
+.darkButton {
+  border: 3px #006790 solid;
+  border-radius: 5px;
+  color: #006790;
+  background-color: #f7f7f7;
+}
