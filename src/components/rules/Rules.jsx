@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 
-import Trial from "../trial/Trial";
-
 import "./rules.css";
 
 export class Rules extends Component {
@@ -67,7 +65,6 @@ export class Rules extends Component {
             Vote
           </a>
         </div>
-        <Trial />
       </div>
     );
   }
